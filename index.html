@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #1e1e1e; /* dark grey background */
+      background-color: #1e1e1e;
       color: #d7f0d7;
       margin: 0;
       padding: 0;
@@ -23,13 +23,13 @@
     }
     .pet {
       cursor: pointer;
-      background-color: #2f2f2f; /* lighter dark grey for buttons */
-      border-radius: 12px; /* corner curves */
+      background-color: #2f2f2f;
+      border-radius: 12px;
       margin: 12px auto;
       padding: 40px 20px;
       box-shadow: 0 0 10px 3px rgba(60, 180, 60, 0.7);
-      width: 85vw; /* less wide */
-      height: 40vh; /* less tall */
+      width: 85vw;
+      height: 40vh; /* collapsed height */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -38,12 +38,14 @@
       font-size: 2rem;
       font-weight: 600;
       line-height: 1.4;
-      transition: transform 0.3s ease;
-      will-change: transform;
       box-sizing: border-box;
+      overflow: hidden; /* hide overflow when collapsed */
+      transition: height 0.3s ease;
     }
-    .pet.slide {
-      transform: translateX(20px);
+    .pet.expanded {
+      height: auto; /* expand height automatically */
+      padding-bottom: 60px; /* extra bottom padding so description isn't cramped */
+      justify-content: flex-start;
     }
     .pet h3 {
       margin: 0 0 12px 0;
@@ -51,12 +53,15 @@
       text-shadow: 0 0 3px #3d7a3d;
     }
     .description {
-      display: none;
       font-size: 1.3rem;
       color: #adebad;
       text-align: center;
       max-width: 90%;
       margin-top: 10px;
+      display: none;
+    }
+    .pet.expanded .description {
+      display: block;
     }
   </style>
 </head>
@@ -65,7 +70,7 @@
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Butterfly - $6</h3>
-    <p class="description">In-game ability: Applies <strong>Rainbow</strong> mutation.</p>
+    <p class="description">In-game ability: Applies <strong>Rainbow</strong> mutation. Increasing plant value by 50x</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
@@ -95,7 +100,7 @@
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Dragonfly - $10</h3>
-    <p class="description">In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value and yield.</p>
+    <p class="description">In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
@@ -105,18 +110,7 @@
 
   <script>
     function toggleDescription(el) {
-      const desc = el.querySelector('.description');
-
-      el.classList.add('slide');
-      setTimeout(() => {
-        el.classList.remove('slide');
-      }, 300);
-
-      if (desc.style.display === 'block') {
-        desc.style.display = 'none';
-      } else {
-        desc.style.display = 'block';
-      }
+      el.classList.toggle('expanded');
     }
   </script>
 </body>
