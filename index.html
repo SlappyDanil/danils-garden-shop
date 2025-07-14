@@ -11,8 +11,8 @@
       color: #d7f0d7;
       margin: 0;
       padding: 0;
-      overflow-y: scroll;
     }
+
     h1 {
       text-align: center;
       margin: 10px 0;
@@ -21,47 +21,33 @@
       color: #adebad;
       text-shadow: 0 0 5px #4d994d;
     }
+
     .pet {
       cursor: pointer;
       background-color: #2f2f2f;
       border-radius: 12px;
       margin: 12px auto;
-      padding: 40px 20px;
+      padding: 20px;
       box-shadow: 0 0 10px 3px rgba(60, 180, 60, 0.7);
       width: 85vw;
-      height: 40vh; /* collapsed height */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-      font-size: 2rem;
-      font-weight: 600;
-      line-height: 1.4;
       box-sizing: border-box;
-      overflow: hidden; /* hide overflow when collapsed */
+      overflow: hidden;
       transition: height 0.3s ease;
     }
-    .pet.expanded {
-      height: auto; /* expand height automatically */
-      padding-bottom: 60px; /* extra bottom padding so description isn't cramped */
-      justify-content: flex-start;
-    }
+
     .pet h3 {
       margin: 0 0 12px 0;
       color: #c1f0c1;
       text-shadow: 0 0 3px #3d7a3d;
+      font-size: 2rem;
     }
+
     .description {
       font-size: 1.3rem;
       color: #adebad;
       text-align: center;
       max-width: 90%;
-      margin-top: 10px;
-      display: none;
-    }
-    .pet.expanded .description {
-      display: block;
+      margin: 10px auto 0 auto;
     }
   </style>
 </head>
@@ -70,48 +56,85 @@
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Butterfly - $6</h3>
-    <p class="description">In-game ability: Applies <strong>Rainbow</strong> mutation. Increasing plant value by 50x</p>
+    <p class="description" style="display: none;">In-game ability: Applies <strong>Rainbow</strong> mutation, increasing plant value by 50x.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Red Fox - $4</h3>
-    <p class="description">In-game ability: Steals seeds from other players’ gardens, but not limited seeds.</p>
+    <p class="description" style="display: none;">In-game ability: Steals seeds from other players’ gardens, but not limited seeds.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Raccoon - $12</h3>
-    <p class="description">In-game ability: Sneaks into other gardens to steal valuable fruits for your inventory.</p>
+    <p class="description" style="display: none;">In-game ability: Sneaks into other gardens to steal valuable fruits for your inventory.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Queen Bee - $8</h3>
-    <p class="description">In-game ability: Refreshes abilities of other pets and applies the <strong>Pollinated</strong> mutation.</p>
+    <p class="description" style="display: none;">In-game ability: Refreshes abilities of other pets and applies the <strong>Pollinated</strong> mutation.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Scarlet Macaw - $1</h3>
-    <p class="description">In-game ability: Applies the <strong>Verdant</strong> mutation.</p>
+    <p class="description" style="display: none;">In-game ability: Applies the <strong>Verdant</strong> mutation.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Hyacinth Macaw - $1</h3>
-    <p class="description">In-game ability: Applies the <strong>Cloudtouched</strong> mutation.</p>
+    <p class="description" style="display: none;">In-game ability: Applies the <strong>Cloudtouched</strong> mutation.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Dragonfly - $10</h3>
-    <p class="description">In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x</p>
+    <p class="description" style="display: none;">In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Disco Bee - $12</h3>
-    <p class="description">In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
+    <p class="description" style="display: none;">In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
   </div>
 
   <script>
     function toggleDescription(el) {
-      el.classList.toggle('expanded');
+      const desc = el.querySelector('.description');
+
+      if (desc.style.display === 'none') {
+        // EXPANDING
+        desc.style.display = 'block';
+        const fullHeight = el.scrollHeight;
+
+        el.style.height = el.offsetHeight + 'px'; // freeze current height
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 0.3s ease';
+          el.style.height = fullHeight + 'px';
+        });
+
+      } else {
+        // COLLAPSING
+        const currentHeight = el.scrollHeight;
+        el.style.height = currentHeight + 'px'; // set current full height
+
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 0.3s ease';
+          desc.style.display = 'none'; // hide immediately, or delay for smoother animation if needed
+          el.style.height = (el.querySelector('h3').offsetHeight + 40) + 'px'; // title + padding
+        });
+      }
+
+      // Reset height to auto after transition completes
+      el.addEventListener('transitionend', function handler() {
+        el.style.height = 'auto';
+        el.style.transition = '';
+        el.removeEventListener('transitionend', handler);
+      });
     }
+
+    // Set initial height to fit just the title
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.pet').forEach(pet => {
+        pet.style.height = (pet.querySelector('h3').offsetHeight + 40) + 'px'; // 40px = approx vertical padding
+      });
+    });
   </script>
 </body>
 </html>
