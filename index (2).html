@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Price List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .pet {
+      display: inline-block;
+      width: 200px;
+      margin: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+    }
+    .pet img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .description {
+      display: none;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pet Price List</h1>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/butterfly.jpg" alt="Butterfly" />
+    <h3>Butterfly - $6</h3>
+    <p class="description">A delicate insect with beautiful wings that flutters gracefully.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/redfox.jpg" alt="Red Fox" />
+    <h3>Red Fox - $4</h3>
+    <p class="description">A clever and curious animal known for its reddish fur and bushy tail.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/raccoon.jpg" alt="Raccoon" />
+    <h3>Raccoon - $12</h3>
+    <p class="description">A mischievous nocturnal creature with a mask-like face and nimble paws.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/queenbee.jpg" alt="Queen Bee" />
+    <h3>Queen Bee - $8</h3>
+    <p class="description">The leader of a hive, known for her role in reproduction and hive management.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/scarletmacaw.jpg" alt="Scarlet Macaw" />
+    <h3>Scarlet Macaw - $1</h3>
+    <p class="description">A brilliantly colored parrot with striking red, yellow, and blue feathers.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/hyacinthmacaw.jpg" alt="Hyacinth Macaw" />
+    <h3>Hyacinth Macaw - $1</h3>
+    <p class="description">The largest flying parrot species, known for its stunning blue feathers.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <img src="https://example.com/dragonfly.jpg" alt="Dragonfly" />
+    <h3>Dragonfly - $10</h3>
+    <p class="description">A fast-flying insect with transparent wings and a long body, often found near water.</p>
+  </div>
+
+  <script>
+    function toggleDescription(el) {
+      const desc = el.querySelector('.description');
+      desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
