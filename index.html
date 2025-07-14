@@ -67,8 +67,8 @@
   <h1>Danil's Garden Shop</h1>
 
   <div class="pet" onclick="toggleDescription(this)">
-    <h3>Butterfly | $8</h3>
-    <p class="description">$8 | In-game ability: Applies <strong>Rainbow</strong> mutation, increasing plant value by 50x.</p>
+    <h3>Raccoon | $13</h3>
+    <p class="description">$13 | In-game ability: Sneaks into other gardens to steal valuable fruits for your inventory.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
@@ -77,8 +77,18 @@
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
-    <h3>Raccoon | $13</h3>
-    <p class="description">$13 | In-game ability: Sneaks into other gardens to steal valuable fruits for your inventory.</p>
+    <h3>Dragonfly | $8</h3>
+    <p class="description">$8 | In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Butterfly | $8</h3>
+    <p class="description">$8 | In-game ability: Applies <strong>Rainbow</strong> mutation, increasing plant value by 50x.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Disco Bee | $9</h3>
+    <p class="description">$9 | In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
@@ -97,16 +107,6 @@
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
-    <h3>Dragonfly | $8</h3>
-    <p class="description">$8 | In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x.</p>
-  </div>
-
-  <div class="pet" onclick="toggleDescription(this)">
-    <h3>Disco Bee | $9</h3>
-    <p class="description">$9 | In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
-  </div>
-
-  <div class="pet" onclick="toggleDescription(this)">
     <h3>4.8T Sheckles | $1</h3>
     <p class="description">$1 | Just a bunch o' sheckles.</p>
   </div>
@@ -119,7 +119,6 @@
       const paddingTopBottom = 40;
 
       if (!isVisible) {
-        // Show description first so we can measure full height
         desc.style.display = 'block';
         desc.classList.add('visible');
 
