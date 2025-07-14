@@ -106,74 +106,71 @@
     <p class="description">$9 | In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
   </div>
 
- <script>
-function toggleDescription(el) {
-  const desc = el.querySelector('.description');
-  const isVisible = desc.classList.contains('visible');
-  const titleHeight = el.querySelector('h3').offsetHeight;
-  const paddingTopBottom = 40;
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>4.8T Sheckles</h3>
+    <p class="description">Just a bunch o' sheckles.</p>
+  </div>
 
-  if (!isVisible) {
-    // Show description first so we can measure full height
-    desc.style.display = 'block';
-    desc.classList.add('visible');
-
-    // Fix current height (which should be title + padding)
-    const initialHeight = el.offsetHeight;
-
-    // Get full expanded height now that desc is visible
-    const fullHeight = el.scrollHeight;
-
-    // Start from fixed height to trigger transition
-    el.style.height = initialHeight + 'px';
-
-    requestAnimationFrame(() => {
-      el.style.transition = 'height 0.3s ease';
-      el.style.height = fullHeight + 'px';
-    });
-
-    el.addEventListener('transitionend', function expandHandler(e) {
-      if (e.propertyName === 'height') {
-        el.style.height = 'auto'; // let it grow naturally after expand
-        el.style.transition = '';
-        el.removeEventListener('transitionend', expandHandler);
-      }
-    });
-  } else {
-    // Collapse: from current full height to title + padding height
-    const fullHeight = el.scrollHeight;
-
-    // Fix height before collapsing to trigger transition
-    el.style.height = fullHeight + 'px';
-
-    requestAnimationFrame(() => {
-      el.style.transition = 'height 0.3s ease';
-      desc.classList.remove('visible');
-      el.style.height = (titleHeight + paddingTopBottom) + 'px';
-    });
-
-    el.addEventListener('transitionend', function collapseHandler(e) {
-      if (e.propertyName === 'height') {
-        desc.style.display = 'none';
-        el.style.transition = '';
-        el.style.height = (titleHeight + paddingTopBottom) + 'px'; // keep fixed height after collapse
-        el.removeEventListener('transitionend', collapseHandler);
-      }
-    });
-  }
-}
-
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.pet').forEach(pet => {
-      const desc = pet.querySelector('.description');
-      desc.style.display = 'none';
-      desc.classList.remove('visible');
-
-      const titleHeight = pet.querySelector('h3').offsetHeight;
+  <script>
+    function toggleDescription(el) {
+      const desc = el.querySelector('.description');
+      const isVisible = desc.classList.contains('visible');
+      const titleHeight = el.querySelector('h3').offsetHeight;
       const paddingTopBottom = 40;
-      pet.style.height = (titleHeight + paddingTopBottom) + 'px';
+
+      if (!isVisible) {
+        // Show description first so we can measure full height
+        desc.style.display = 'block';
+        desc.classList.add('visible');
+
+        const initialHeight = el.offsetHeight;
+        const fullHeight = el.scrollHeight;
+        el.style.height = initialHeight + 'px';
+
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 0.3s ease';
+          el.style.height = fullHeight + 'px';
+        });
+
+        el.addEventListener('transitionend', function expandHandler(e) {
+          if (e.propertyName === 'height') {
+            el.style.height = 'auto';
+            el.style.transition = '';
+            el.removeEventListener('transitionend', expandHandler);
+          }
+        });
+      } else {
+        const fullHeight = el.scrollHeight;
+        el.style.height = fullHeight + 'px';
+
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 0.3s ease';
+          desc.classList.remove('visible');
+          el.style.height = (titleHeight + paddingTopBottom) + 'px';
+        });
+
+        el.addEventListener('transitionend', function collapseHandler(e) {
+          if (e.propertyName === 'height') {
+            desc.style.display = 'none';
+            el.style.transition = '';
+            el.style.height = (titleHeight + paddingTopBottom) + 'px';
+            el.removeEventListener('transitionend', collapseHandler);
+          }
+        });
+      }
+    }
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.pet').forEach(pet => {
+        const desc = pet.querySelector('.description');
+        desc.style.display = 'none';
+        desc.classList.remove('visible');
+
+        const titleHeight = pet.querySelector('h3').offsetHeight;
+        const paddingTopBottom = 40;
+        pet.style.height = (titleHeight + paddingTopBottom) + 'px';
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
