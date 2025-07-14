@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Danil's Garden Shop</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #0a4d0a;
+      background-color: #1e1e1e; /* dark grey background */
       color: #d7f0d7;
       margin: 0;
-      padding: 20px 10px;
+      padding: 0;
       overflow-y: scroll;
     }
     h1 {
       text-align: center;
-      margin-bottom: 1rem;
+      margin: 10px 0;
       font-size: 2.5rem;
       font-weight: bold;
       color: #adebad;
@@ -23,38 +23,40 @@
     }
     .pet {
       cursor: pointer;
-      background-color: #137413;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      padding: 25px 15px;
-      box-shadow: 0 0 10px 3px rgba(30, 150, 30, 0.8);
-      max-width: 600px;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      transition: transform 0.3s ease;
-      will-change: transform;
+      background-color: #2f2f2f; /* lighter dark grey for buttons */
+      border-radius: 12px; /* corner curves */
+      margin: 12px auto;
+      padding: 40px 20px;
+      box-shadow: 0 0 10px 3px rgba(60, 180, 60, 0.7);
+      width: 95vw; /* slightly smaller width */
+      height: 85vh; /* slightly smaller height */
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       user-select: none;
-      font-size: 1.3rem;
+      font-size: 2rem;
       font-weight: 600;
       line-height: 1.4;
+      transition: transform 0.3s ease;
+      will-change: transform;
+      box-sizing: border-box;
     }
     .pet.slide {
       transform: translateX(20px);
     }
     .pet h3 {
-      margin: 0 0 8px 0;
+      margin: 0 0 12px 0;
       color: #c1f0c1;
       text-shadow: 0 0 3px #3d7a3d;
     }
     .description {
       display: none;
-      font-size: 1rem;
+      font-size: 1.3rem;
       color: #adebad;
-      padding-left: 5px;
-      margin-top: 5px;
+      text-align: center;
+      max-width: 90%;
+      margin-top: 10px;
     }
   </style>
 </head>
