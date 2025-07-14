@@ -31,6 +31,7 @@
       width: 85vw;
       box-sizing: border-box;
       overflow: hidden;
+      height: auto; /* we'll control height via JS */
       transition: height 0.3s ease;
     }
 
@@ -48,11 +49,13 @@
       margin-top: 12px;
       text-align: left;
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.3s ease;
+      display: none;
     }
 
     .description.visible {
       opacity: 1;
+      display: block;
     }
   </style>
 </head>
@@ -104,5 +107,61 @@
       const desc = el.querySelector('.description');
       const isVisible = desc.classList.contains('visible');
 
-      // Get current height
-      const initialHeight = el.getBoundingClientRect().h
+      const titleHeight = el.querySelector('h3').offsetHeight;
+      const paddingTopBottom = 40; // Approximate vertical padding
+
+      if (!isVisible) {
+        // Show description first (display:block) to get scrollHeight correctly
+        desc.style.display = 'block';
+
+        // Get full height including description
+        const fullHeight = el.scrollHeight;
+
+        // Set current height fixed to trigger transition
+        el.style.height = (titleHeight + paddingTopBottom) + 'px';
+
+        // Allow browser to register height change
+        requestAnimationFrame(() => {
+          // Add visible class (opacity 1)
+          desc.classList.add('visible');
+          // Animate height to full height
+          el.style.height = fullHeight + 'px';
+        });
+      } else {
+        // Collapse
+        const fullHeight = el.scrollHeight;
+
+        // Fix current height
+        el.style.height = fullHeight + 'px';
+
+        requestAnimationFrame(() => {
+          // Remove visible class (opacity 0)
+          desc.classList.remove('visible');
+          // Animate height to just title + padding
+          el.style.height = (titleHeight + paddingTopBottom) + 'px';
+        });
+
+        el.addEventListener('transitionend', function handler() {
+          // Hide description after animation ends
+          desc.style.display = 'none';
+          el.style.height = 'auto'; // Reset height for natural flow
+          el.removeEventListener('transitionend', handler);
+        });
+      }
+    }
+
+    // On load: set collapsed height and hide all descriptions
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.pet').forEach(pet => {
+        const desc = pet.querySelector('.description');
+        desc.style.display = 'none';
+        desc.classList.remove('visible');
+
+        const titleHeight = pet.querySelector('h3').offsetHeight;
+        const paddingTopBottom = 40; // Must match JS above
+        pet.style.height = (titleHeight + paddingTopBottom) + 'px';
+      });
+    });
+  </script>
+</body>
+</html>
