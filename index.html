@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danil's Garden Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0a4d0a;
+      color: #d7f0d7;
+      margin: 0;
+      padding: 20px 10px;
+      overflow-y: scroll;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #adebad;
+      text-shadow: 0 0 5px #4d994d;
+    }
+    .pet {
+      cursor: pointer;
+      background-color: #137413;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      padding: 25px 15px;
+      box-shadow: 0 0 10px 3px rgba(30, 150, 30, 0.8);
+      max-width: 600px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      transition: transform 0.3s ease;
+      will-change: transform;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .pet.slide {
+      transform: translateX(20px);
+    }
+    .pet h3 {
+      margin: 0 0 8px 0;
+      color: #c1f0c1;
+      text-shadow: 0 0 3px #3d7a3d;
+    }
+    .description {
+      display: none;
+      font-size: 1rem;
+      color: #adebad;
+      padding-left: 5px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Danil's Garden Shop</h1>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Butterfly - $6</h3>
+    <p class="description">In-game ability: Attracts pollinators that speed up the growth rate of nearby plants.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Red Fox - $4</h3>
+    <p class="description">In-game ability: Steals seeds from other players’ gardens, slowing their planting progress.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Raccoon - $12</h3>
+    <p class="description">In-game ability: Sneaks into other gardens to steal mature plants for your inventory.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Queen Bee - $8</h3>
+    <p class="description">In-game ability: Refreshes abilities of other pets and applies the <strong>Pollinated</strong> mutation.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Scarlet Macaw - $1</h3>
+    <p class="description">In-game ability: Applies the <strong>Verdant</strong> mutation, enhancing plant growth and vitality.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Hyacinth Macaw - $1</h3>
+    <p class="description">In-game ability: Applies the <strong>Cloudtouched</strong> mutation, boosting plant resilience and appearance.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Dragonfly - $10</h3>
+    <p class="description">In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value and yield.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Disco Bee - $12</h3>
+    <p class="description">In-game ability: Applies the <strong>Disco Mutation</strong>, adding dazzling effects that boost pollination rates.</p>
+  </div>
+
+  <script>
+    function toggleDescription(el) {
+      const desc = el.querySelector('.description');
+
+      el.classList.add('slide');
+      setTimeout(() => {
+        el.classList.remove('slide');
+      }, 300);
+
+      if (desc.style.display === 'block') {
+        desc.style.display = 'none';
+      } else {
+        desc.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
