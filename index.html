@@ -1,54 +1,185 @@
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Raccoon | $13</h3>
-  <p class="description">$13 | In-game ability: Sneaks into other gardens to steal valuable fruits for your inventory.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Danil's Garden Shop</title>
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Disco Bee | $9</h3>
-  <p class="description">$9 | In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
-</div>
+  <!-- Google Font: Winky Rough -->
+  <link href="https://fonts.googleapis.com/css2?family=Winky+Rough&display=swap" rel="stylesheet">
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Butterfly | $8</h3>
-  <p class="description">$8 | In-game ability: Applies <strong>Rainbow</strong> mutation, increasing plant value by 50x.</p>
-</div>
+  <style>
+    body {
+      font-family: 'Winky Rough', cursive;
+      background-color: #1e1e1e;
+      color: #d7f0d7;
+      margin: 0;
+      padding: 0;
+    }
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Dragonfly | $8</h3>
-  <p class="description">$8 | In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x.</p>
-</div>
+    h1 {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #adebad;
+      text-shadow: 0 0 5px #4d994d;
+    }
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Queen Bee | $7</h3>
-  <p class="description">$7 | In-game ability: Refreshes abilities of other pets and applies the <strong>Pollinated</strong> mutation.</p>
-</div>
+    .pet {
+      cursor: pointer;
+      background-color: #2f2f2f;
+      border-radius: 12px;
+      margin: 12px auto;
+      padding: 20px;
+      width: 85vw;
+      box-sizing: border-box;
+      overflow: hidden;
+      height: auto;
+      transition: height 0.3s ease;
+    }
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Blood Owl | $5</h3>
-  <p class="description">$5 | In-game ability: Increases XP gain of other pets.</p>
-</div>
+    .pet h3 {
+      margin: 0;
+      color: #c1f0c1;
+      text-shadow: 0 0 3px #3d7a3d;
+      font-size: 2rem;
+    }
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Mimic Octopus | $5</h3>
-  <p class="description">$5 | In-game ability: Mimics the abilities of nearby pets.</p>
-</div>
+    .description {
+      font-size: 1.3rem;
+      color: #adebad;
+      max-width: 90%;
+      margin-top: 12px;
+      text-align: left;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: none;
+    }
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Red Fox | $4</h3>
-  <p class="description">$4 | In-game ability: Steals seeds from other players’ gardens, but not limited seeds.</p>
-</div>
+    .description.visible {
+      opacity: 1;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Danil's Garden Shop</h1>
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Scarlet Macaw | $2</h3>
-  <p class="description">$2 | In-game ability: Applies the <strong>Verdant</strong> mutation.</p>
-</div>
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Raccoon | $13</h3>
+    <p class="description">$13 | In-game ability: Sneaks into other gardens to steal valuable fruits for your inventory.</p>
+  </div>
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>Hyacinth Macaw | $2</h3>
-  <p class="description">$2 | In-game ability: Applies the <strong>Cloudtouched</strong> mutation.</p>
-</div>
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Disco Bee | $9</h3>
+    <p class="description">$9 | In-game ability: Applies the <strong>Disco Mutation</strong>.</p>
+  </div>
 
-<div class="pet" onclick="toggleDescription(this)">
-  <h3>4.8T Sheckles | $1</h3>
-  <p class="description">$1 | Just a bunch o' sheckles.</p>
-</div>
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Butterfly | $8</h3>
+    <p class="description">$8 | In-game ability: Applies <strong>Rainbow</strong> mutation, increasing plant value by 50x.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Dragonfly | $8</h3>
+    <p class="description">$8 | In-game ability: Applies the <strong>Gold Mutation</strong>, increasing plant value by 20x.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Queen Bee | $7</h3>
+    <p class="description">$7 | In-game ability: Refreshes abilities of other pets and applies the <strong>Pollinated</strong> mutation.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Blood Owl | $5</h3>
+    <p class="description">$5 | In-game ability: Increases XP gain of other pets.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Mimic Octopus | $5</h3>
+    <p class="description">$5 | In-game ability: Mimics the abilities of nearby pets.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Red Fox | $4</h3>
+    <p class="description">$4 | In-game ability: Steals seeds from other players’ gardens, but not limited seeds.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Scarlet Macaw | $2</h3>
+    <p class="description">$2 | In-game ability: Applies the <strong>Verdant</strong> mutation.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>Hyacinth Macaw | $2</h3>
+    <p class="description">$2 | In-game ability: Applies the <strong>Cloudtouched</strong> mutation.</p>
+  </div>
+
+  <div class="pet" onclick="toggleDescription(this)">
+    <h3>4.8T Sheckles | $1</h3>
+    <p class="description">$1 | Just a bunch o' sheckles.</p>
+  </div>
+
+  <script>
+    function toggleDescription(el) {
+      const desc = el.querySelector('.description');
+      const isVisible = desc.classList.contains('visible');
+      const titleHeight = el.querySelector('h3').offsetHeight;
+      const paddingTopBottom = 40;
+
+      if (!isVisible) {
+        desc.style.display = 'block';
+        desc.classList.add('visible');
+
+        const initialHeight = el.offsetHeight;
+        const fullHeight = el.scrollHeight;
+        el.style.height = initialHeight + 'px';
+
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 0.3s ease';
+          el.style.height = fullHeight + 'px';
+        });
+
+        el.addEventListener('transitionend', function expandHandler(e) {
+          if (e.propertyName === 'height') {
+            el.style.height = 'auto';
+            el.style.transition = '';
+            el.removeEventListener('transitionend', expandHandler);
+          }
+        });
+      } else {
+        const fullHeight = el.scrollHeight;
+        el.style.height = fullHeight + 'px';
+
+        requestAnimationFrame(() => {
+          el.style.transition = 'height 0.3s ease';
+          desc.classList.remove('visible');
+          el.style.height = (titleHeight + paddingTopBottom) + 'px';
+        });
+
+        el.addEventListener('transitionend', function collapseHandler(e) {
+          if (e.propertyName === 'height') {
+            desc.style.display = 'none';
+            el.style.transition = '';
+            el.style.height = (titleHeight + paddingTopBottom) + 'px';
+            el.removeEventListener('transitionend', collapseHandler);
+          }
+        });
+      }
+    }
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.pet').forEach(pet => {
+        const desc = pet.querySelector('.description');
+        desc.style.display = 'none';
+        desc.classList.remove('visible');
+
+        const titleHeight = pet.querySelector('h3').offsetHeight;
+        const paddingTopBottom = 40;
+        pet.style.height = (titleHeight + paddingTopBottom) + 'px';
+      });
+    });
+  </script>
+</body>
+</html>
