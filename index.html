@@ -44,6 +44,7 @@
       color: #c1f0c1;
       text-shadow: 0 0 3px #3d7a3d;
       font-size: 2rem;
+      display: inline-block;
     }
 
     .description {
@@ -60,20 +61,34 @@
     .description.visible {
       opacity: 1;
       display: block;
-      
+    }
+
+    /* Rotating animation */
+    @keyframes shake-rotate {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(4deg); }
+      50% { transform: rotate(-4deg); }
+      75% { transform: rotate(4deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .pet:hover h3:not(.active) {
+      animation: shake-rotate 0.4s infinite ease-in-out;
+    }
   </style>
 </head>
 <body>
   <h1>Danil's Grow a Garden Store</h1>
 
+  <!-- Example pet -->
   <div class="pet" onclick="toggleDescription(this)">
     <h3>Raccoon | A$13</h3>
     <p class="description">A$13 | Steals valuable fruits from other gardens.</p>
   </div>
 
-     <div class="pet" onclick="toggleDescription(this)">
+  <div class="pet" onclick="toggleDescription(this)">
     <h3>Spinosaurus | A$12</h3>
-    <p class="description">A$12 | Takes <strong>mutations</strong> from your fruits and spreads them to another fruit, prioritizing your favourited one. </p>
+    <p class="description">A$12 | Takes <strong>mutations</strong> from your fruits and spreads them to another fruit, prioritizing your favourited one.</p>
   </div>
 
   <div class="pet" onclick="toggleDescription(this)">
@@ -101,7 +116,7 @@
     <p class="description">A$6 | Refreshes other pets' abilities and adds <strong>Pollinated</strong> mutation.</p>
   </div>
 
-  <div class="pet" onclick="toggleDescription(this)">
+   <div class="pet" onclick="toggleDescription(this)">
     <h3>T-Rex | A$6</h3>
     <p class="description">A$6 | Steals a <strong>mutation</strong> from your fruit and spreads it to others.</p>
   </div>
@@ -116,7 +131,7 @@
     <p class="description">A$5 | Increases XP gain for other pets.</p>
   </div>
 
-  <div class="pet" onclick="toggleDescription(this)">
+    <div class="pet" onclick="toggleDescription(this)">
     <h3>Mimic Octopus | A$5</h3>
     <p class="description">A$5 | Mimics random pet abilities.</p>
   </div>
@@ -136,7 +151,7 @@
     <p class="description">A$3 | Applies the <strong>Cloudtouched</strong> mutation.</p>
   </div>
 
-    <div class="pet" onclick="toggleDescription(this)">
+  <div class="pet" onclick="toggleDescription(this)">
     <h3>Cooked Owl | A$3</h3>
     <p class="description">A$3 | Applies the <strong>Cooked</strong> or <strong>Burnt</strong> mutation.</p>
   </div>
@@ -146,36 +161,39 @@
     <p class="description">A$3 | Applies the <strong>HoneyGlazed</strong> mutation.</p>
   </div>
 
+  
   <div class="pet" onclick="toggleDescription(this)">
     <h3>4.8T Sheckles | A$1</h3>
     <p class="description">A$1 | Just a bunch o' <strong>sheckles</strong>.</p>
   </div>
 
   <!-- Payment Section -->
- <h2 style="text-align:center; margin-top:40px;">💰 Pay via Bank Transfer or Cash</h2>
+  <h2 style="text-align:center; margin-top:40px;">💰 Pay via Bank Transfer or Cash</h2>
 
-<p style="text-align:center; font-size:1.2rem; max-width:600px; margin: 0 auto 20px auto;">
-  To pay, send me the correct amount of money for your selected item. You can pay by bank transfer or cash. Once payment is confirmed, your item will be delivered <strong>shortly</strong>. If paying by bank transfer, please DM me on Discord with proof of payment and your Roblox username..
-</p>
+  <p style="text-align:center; font-size:1.2rem; max-width:600px; margin: 0 auto 20px auto;">
+    To pay, send me the correct amount of money for your selected item. You can pay by bank transfer or cash. Once payment is confirmed, your item will be delivered <strong>shortly</strong>. If paying by bank transfer, please DM me on Discord with proof of payment and your Roblox username.
+  </p>
 
-<div style="text-align:center; font-size:1.2rem;">
-  <p><strong>Account Name:</strong> Danil Ponomarev</p>
-  <p><strong>BSB:</strong> 732134</p>
-  <p><strong>Account Number:</strong> 757723</p>
-  <p><strong>Reference:</strong> Discord & Roblox user SlappyDanil</p>
-  <p><strong>Cash:</strong> Accepted in person</p>
-</div>
+  <div style="text-align:center; font-size:1.2rem;">
+    <p><strong>Account Name:</strong> Danil Ponomarev</p>
+    <p><strong>BSB:</strong> 732134</p>
+    <p><strong>Account Number:</strong> 757723</p>
+    <p><strong>Reference:</strong> Discord & Roblox user SlappyDanil</p>
+    <p><strong>Cash:</strong> Accepted in person</p>
+  </div>
 
   <script>
     function toggleDescription(el) {
       const desc = el.querySelector('.description');
+      const h3 = el.querySelector('h3');
       const isVisible = desc.classList.contains('visible');
-      const titleHeight = el.querySelector('h3').offsetHeight;
+      const titleHeight = h3.offsetHeight;
       const paddingTopBottom = 40;
 
       if (!isVisible) {
         desc.style.display = 'block';
         desc.classList.add('visible');
+        h3.classList.add('active');
 
         const initialHeight = el.offsetHeight;
         const fullHeight = el.scrollHeight;
@@ -200,6 +218,7 @@
         requestAnimationFrame(() => {
           el.style.transition = 'height 0.3s ease';
           desc.classList.remove('visible');
+          h3.classList.remove('active');
           el.style.height = (titleHeight + paddingTopBottom) + 'px';
         });
 
@@ -217,10 +236,12 @@
     window.addEventListener('load', () => {
       document.querySelectorAll('.pet').forEach(pet => {
         const desc = pet.querySelector('.description');
+        const h3 = pet.querySelector('h3');
         desc.style.display = 'none';
         desc.classList.remove('visible');
+        h3.classList.remove('active');
 
-        const titleHeight = pet.querySelector('h3').offsetHeight;
+        const titleHeight = h3.offsetHeight;
         const paddingTopBottom = 40;
         pet.style.height = (titleHeight + paddingTopBottom) + 'px';
       });
