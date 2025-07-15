@@ -62,32 +62,19 @@
       opacity: 1;
       display: block;
     }
-    
-@keyframes shine {
-  0% {
-    background-position: -200%;
-  }
-  100% {
-    background-position: 200%;
-  }
-}
 
-.pet:hover h3:not(.active) {
-  /* keep existing rotate animation */
-  animation: shake-rotate 0.6s infinite ease-in-out;
-  
-  /* add shine effect */
-  background: linear-gradient(
-    120deg,
-    #d7f0d7 30%,
-    #ffffff 50%,
-    #d7f0d7 70%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shake-rotate 0.6s infinite ease-in-out, shine 2s linear infinite;
-}
+    /* Rotating animation */
+    @keyframes shake-rotate {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(4deg); }
+      50% { transform: rotate(-4deg); }
+      75% { transform: rotate(4deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .pet:hover h3:not(.active) {
+      animation: shake-rotate 0.6s infinite ease-in-out;
+    }
   </style>
 </head>
 <body>
